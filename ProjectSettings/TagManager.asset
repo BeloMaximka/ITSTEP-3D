@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DayLight
   - NightLight
+  - Wall
   layers:
   - Default
   - TransparentFX
