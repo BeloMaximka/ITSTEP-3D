@@ -24,6 +24,12 @@ public class DoorScript : MonoBehaviour
 
     private bool isOpened = false;
 
+    private void Start()
+    {
+        GameSettings.EffectsVolumeChanged += UpdateVolume;
+        UpdateVolume(GameSettings.EffectsVolume);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isOpened)
@@ -54,6 +60,18 @@ public class DoorScript : MonoBehaviour
         {
             lockedSound.Play();
         }
+    }
+
+    private void UpdateVolume(float volume)
+    {
+        lockedSound.volume = volume;
+        slowOpenSound.volume = volume;
+        quickOpenSound.volume = volume;
+    }
+
+    private void OnDestroy()
+    {
+        GameSettings.EffectsVolumeChanged -= UpdateVolume;
     }
 
     private IEnumerator DestroyDoor(float delay)

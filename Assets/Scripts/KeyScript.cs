@@ -16,6 +16,12 @@ public class KeyScript : MonoBehaviour
     [SerializeField]
     AudioSource stalePickupSound;
 
+    private void Start()
+    {
+        GameSettings.EffectsVolumeChanged += UpdateVolume;
+        UpdateVolume(GameSettings.EffectsVolume);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -32,6 +38,17 @@ public class KeyScript : MonoBehaviour
             }
             StartCoroutine(DestroyKey());
         }
+    }
+
+    private void UpdateVolume(float volume)
+    {
+        keyPickupSound.volume = volume;
+        stalePickupSound.volume = volume;
+    }
+
+    private void OnDestroy()
+    {
+        GameSettings.EffectsVolumeChanged -= UpdateVolume;
     }
 
     private IEnumerator DestroyKey()
