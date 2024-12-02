@@ -26,7 +26,7 @@ public class KeyScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameState.SetKeyPicked(keyName);
+            GameState.OnKeyPickup(keyName);
             KeyInfo info = GameState.CollectedKeys[keyName];
             if (info.IsStale)
             {
