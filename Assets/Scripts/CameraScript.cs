@@ -13,8 +13,6 @@ public class CameraScript : MonoBehaviour
 
     private Vector3 c;
     private float mX, mY;
-    private readonly float sensitivityH = 10.0f;
-    private readonly float sensitivityV = 5.0f;
     private readonly float sensitivityW = 0.1f;
     private readonly float fpvRange = 0.6f;
 
@@ -48,10 +46,10 @@ public class CameraScript : MonoBehaviour
                 }
             }
             Vector2 lookValue = lookAction.ReadValue<Vector2>() * Time.deltaTime;
-            mX += lookValue.x * sensitivityH;
+            mX += lookValue.x * GameSettings.MouseSensitivityX;
 
             float verticalAngleRestriction = GradualSqrt(c.magnitude, 0.4f);
-            mY += -lookValue.y * sensitivityV;
+            mY += -lookValue.y * GameSettings.MouseSensitivityY;
             mY = Mathf.Clamp(mY, verticalAngleRestriction, 75);
 
             transform.eulerAngles = new Vector3(mY, mX, 0);

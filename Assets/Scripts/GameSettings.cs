@@ -63,5 +63,9 @@ namespace Assets.Scripts
                 EffectsVolumeChanged.Invoke(isMuted ? 0 : effectsVolume);
             }
         }
+
+        public static float MouseSensitivityX { get; set; } = 5f;
+        public static float MouseSensitivityY { get; set; } = 5f;
+        public static bool IsMouseSensitivityShared { get; set; } = true;
     }
 }
