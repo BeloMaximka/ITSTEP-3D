@@ -9,6 +9,9 @@ namespace Assets.Scripts
     {
         public static bool IsFpv { get; set; }
         public static float FlashCharge { get; set; } = 1f;
+
+        public static int ClocksPicked { get; set; } = 0;
+
         public static Dictionary<string, KeyInfo> CollectedKeys { get; } = new();
 
         public static void SetKeyStale(string key, bool value = true)

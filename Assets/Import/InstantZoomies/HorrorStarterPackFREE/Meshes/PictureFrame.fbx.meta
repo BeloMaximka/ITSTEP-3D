@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 6f861a5f3e542c94a80038eab2cb83d1
+guid: edb7542e22e1a724c9b1858ff381914c
 ModelImporter:
   serializedVersion: 27
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -98,5 +98,5 @@ AssetOrigin:
   productId: 178413
   packageName: Horror Starter Pack FREE
   packageVersion: 1.0
-  assetPath: Assets/Import/InstantZoomies/HorrorStarterPackFREE/Meshes/Key.fbx
+  assetPath: Assets/Import/InstantZoomies/HorrorStarterPackFREE/Meshes/PictureFrame.fbx
   uploadId: 397464

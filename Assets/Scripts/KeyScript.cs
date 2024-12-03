@@ -1,6 +1,7 @@
 using Assets.Scripts;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyScript : MonoBehaviour
 {
@@ -26,7 +27,13 @@ public class KeyScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (GameState.ClocksPicked > 0)
+            {
+                GameState.ClocksPicked--;
+                GameState.SetKeyStale(keyName, false);
+            }
             GameState.OnKeyPickup(keyName);
+
             KeyInfo info = GameState.CollectedKeys[keyName];
             if (info.IsStale)
             {
