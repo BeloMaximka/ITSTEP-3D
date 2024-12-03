@@ -1,6 +1,8 @@
 using Assets.Scripts;
 using Assets.Scripts.Enums;
 using System;
+using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +27,9 @@ public class SettingsScript : MonoBehaviour
 
     [SerializeField]
     private Toggle muteSoundsToggle;
+
+    [SerializeField]
+    private TMP_Dropdown difficultyDropdown;
 
     void Start()
     {
@@ -85,6 +90,11 @@ public class SettingsScript : MonoBehaviour
         }
     }
 
+    public void OnDifficultyChanged(int value)
+    {
+        GameSettings.Difficulty = (DifficultyType)value;
+    }
+
     public void OnCancel()
     {
         LoadSettings();
@@ -95,6 +105,7 @@ public class SettingsScript : MonoBehaviour
         sensitivityXSlider.value = GameSettings.MouseSensitivityX;
         sensitivityYSlider.value = GameSettings.MouseSensitivityY;
         sharedSensitivityToggle.isOn = GameSettings.IsMouseSensitivityShared;
+        difficultyDropdown.value = (int)GameSettings.Difficulty;
     }
 
     public void OnSave()
@@ -115,6 +126,7 @@ public class SettingsScript : MonoBehaviour
         PlayerPrefs.SetFloat(SettingKey.MouseSensitivityX, GameSettings.MouseSensitivityX);
         PlayerPrefs.SetFloat(SettingKey.MouseSensitivityY, GameSettings.MouseSensitivityY);
         PlayerPrefs.SetInt(SettingKey.IsMouseSensitivityShared, Convert.ToInt32(GameSettings.IsMouseSensitivityShared));
+        PlayerPrefs.SetInt(SettingKey.Difficulty, (int)GameSettings.Difficulty);
         PlayerPrefs.Save();
     }
 
@@ -148,6 +160,11 @@ public class SettingsScript : MonoBehaviour
         if (PlayerPrefs.HasKey(SettingKey.IsMouseSensitivityShared))
         {
             GameSettings.IsMouseSensitivityShared = PlayerPrefs.GetInt(SettingKey.IsMouseSensitivityShared) == 1;
+        }
+
+        if (PlayerPrefs.HasKey(SettingKey.Difficulty))
+        {
+            GameSettings.Difficulty = (DifficultyType)PlayerPrefs.GetInt(SettingKey.Difficulty);
         }
     }
 }

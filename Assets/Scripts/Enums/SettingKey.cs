@@ -14,5 +14,6 @@ namespace Assets.Scripts.Enums
         public const string MouseSensitivityX = "MouseSensitivityX";
         public const string MouseSensitivityY = "MouseSensitivityY";
         public const string IsMouseSensitivityShared = "IsMouseSensitivityShared";
+        public const string Difficulty = "Difficulty";
     }
 }

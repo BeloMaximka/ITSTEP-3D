@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Assets.Scripts.Enums;
 using UnityEngine;
 
 public class FlashlightScript : MonoBehaviour
@@ -6,13 +7,16 @@ public class FlashlightScript : MonoBehaviour
     private Rigidbody playerRb;
     private Light spotLight;
 
-    private readonly float chargeTimeout = 10.0f;
+    private float chargeTimeout = 10.0f;
 
     void Start()
     {
         playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         spotLight = GetComponent<Light>();
         GameState.FlashCharge = 1.0f;
+
+        ChangeChargeTimeout(GameSettings.Difficulty);
+        GameSettings.DifficultyChanged += ChangeChargeTimeout;
     }
     void Update()
     {
@@ -35,4 +39,21 @@ public class FlashlightScript : MonoBehaviour
             transform.forward = playerRb.linearVelocity.normalized;
         }
     }
+
+    private void ChangeChargeTimeout(DifficultyType difficulty)
+    {
+        chargeTimeout = difficulty switch
+        {
+            DifficultyType.Easy => 20f,
+            DifficultyType.Medium => 10f,
+            DifficultyType.Hard => 5f,
+            _ => 10f,
+        };
+    }
+
+    private void OnDestroy()
+    {
+        GameSettings.DifficultyChanged -= ChangeChargeTimeout;
+    }
+
 }

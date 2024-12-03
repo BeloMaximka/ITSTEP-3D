@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Enums;
+using System;
 
 namespace Assets.Scripts
 {
@@ -61,6 +62,24 @@ namespace Assets.Scripts
                 isMuted = value;
                 MusicVolumeChanged.Invoke(isMuted ? 0 : musicVolume);
                 EffectsVolumeChanged.Invoke(isMuted ? 0 : effectsVolume);
+            }
+        }
+
+        public static event Action<DifficultyType> DifficultyChanged;
+
+        private static DifficultyType difficulty = DifficultyType.Easy;
+        public static DifficultyType Difficulty
+        {
+            get => difficulty;
+            set
+            {
+                if (difficulty == value)
+                {
+                    return;
+                }
+
+                difficulty = value;
+                DifficultyChanged.Invoke(difficulty);
             }
         }
 
